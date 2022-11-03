@@ -1,0 +1,13 @@
+CREATE TABLE postac(id INT PRIMARY KEY, nazwa VARCHAR(40), rodzaj ENUM('wiking','ptak','kobieta'), data_ur DATE, wiek INT UNSIGNED);
+INSERT INTO postac(nazwa,rodzaj,data_ur,wiek)  VALUES('Bjorn','wiking','1000-01-01','30');
+INSERT INTO postac(nazwa,rodzaj,data_ur,wiek)  VALUES('Drozd','ptak','1028-01-01','2');
+INSERT INTO postac(nazwa,rodzaj,data_ur,wiek)  VALUES('Tescowa','kobieta','950-01-01','80');
+UPDATE postac SET data_ur = '942-01-01', wiek = '88' Where id = 3;
+
+
+
+CREATE TABLE walizka(id_walizki INT PRIMARY KEY auto_increment, kolor ENUM('rozowy','czerwony','teczowy','zolty') NOT NULL, id_wlasciciela INT, FOREIGN KEY(id_wlasciciela) REFERENCES postac(id) ON DELETE SET  NULL );
+ALTER TABLE walizka ADD pojemnosc INT UNSIGNED;
+ALTER TABLE walizka MODIFY kolor ENUM('rozowy','czerwony','teczowy','zolty') DEFAULT 'rozowy';
+INSERT INTO walizka(kolor,id_wlasciciela,pojemnosc)  VALUES('czerwony','1','20');
+INSERT INTO walizka(kolor,id_wlasciciela,pojemnosc)  VALUES('rozowy','3','50');
