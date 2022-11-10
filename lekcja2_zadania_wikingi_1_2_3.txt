@@ -1,0 +1,39 @@
+ZAD.1
+DELETE FROM postac WHERE id = 4;
+DELETE FROM postac WHERE id = 5;
+
+ALTER TABLE walizka DROP FOREIGN KEY walizka_ibfk_1;
+ALTER TABLE izba DROP FOREIGN KEY izba_ibfk_1;
+ALTER TABLE przetwory DROP FOREIGN KEY przetwory_ibfk_1;
+ALTER TABLE przetwory DROP FOREIGN KEY przetwory_ibfk_2;
+
+ALTER TABLE postac MODIFY id INT;
+ALTER TABLE postac DROP PRIMARY KEY;
+
+ZAD.2
+ALTER TABLE postac ADD pesel VARCHAR(11);
+UPDATE postac SET pesel = '12345678910' WHERE id = 1;
+UPDATE postac SET pesel = '12345678911' WHERE id = 2;
+UPDATE postac SET pesel = '12345678912' WHERE id = 3;
+UPDATE postac SET pesel = '12345678913' WHERE id = 6;
+UPDATE postac SET pesel = '12345678914' WHERE id = 7;
+UPDATE postac SET pesel = '12345678915' WHERE id = 8;
+ALTER TABLE postac MODIFY pesel VARCHAR(11) PRIMARY KEY;
+
+ALTER TABLE postac MODIFY rodzaj ENUM('wiking','ptak','kobieta','syrena');
+INSERT INTO postac(id,nazwa,rodzaj,data_ur,wiek,funkcja,ktory_statek,pesel) VALUES('9','Gertruda_Nieszczera','syrena','1000-01-01','30','NULL','NULL','12345678916');
+
+ZAD.3
+UPDATE postac SET ktory_statek = 'Statek1' WHERE nazwa LIKE '%a%';
+UPDATE statek SET max_ladownosc = 0.7 * max_ladownosc WHERE data_wodowania > '1900-01-01';
+
+ZAD.4
+
+
+
+
+
+
+
+
+
