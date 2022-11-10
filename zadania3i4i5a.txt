@@ -1,0 +1,38 @@
+CREATE TABLE izba(adres_budynku INT, nazwa_izby VARCHAR(40), PRIMARY KEY(adres_budynku, nazwa_izby), metraz INT UNSIGNED, wlasciciel INT, FOREIGN KEY(wlasciciel) REFERENCES postac(id) ON DELETE SET NULL);
+ALTER TABLE izba ADD kolor ENUM('czarny','bronzowy','bialy') DEFAULT'czarny';
+INSERT INTO izba(adres_budynku, nazwa_izby, metraz, wlasciciel, kolor)  VALUES('123','izba1','100','1','bronzowy');
+
+
+
+CREATE TABLE przetwory(id_przetworu INT PRIMARY KEY, rok_produkcji YEAR(4) DEFAULT 1999, id_wykonawcy INT, FOREIGN KEY(id_wykonawcy) REFERENCES postac(id) ON DELETE SET NULL, zawartosc VARCHAR(40), dodatek VARCHAR(40) DEFAULT 'papryczka_chilli', id_konsumenta INT, FOREIGN KEY(id_konsumenta) REFERENCES postac(id) ON DELETE SET NULL);
+ALTER TABLE przetwory MODIFY id_przetworu INT auto_increment;
+INSERT INTO przetwory(rok_produkcji,id_wykonawcy,zawartosc,dodatek,id_konsumenta)  VALUES('1999','1','bigos','papryczka_chilli','3');
+
+
+
+
+INSERT INTO postac(nazwa,rodzaj,data_ur,wiek) VALUES('Wiking1','wiking','1000-01-02','30');
+INSERT INTO postac(nazwa,rodzaj,data_ur,wiek) VALUES('Wiking2','wiking','1000-01-03','30');
+INSERT INTO postac(nazwa,rodzaj,data_ur,wiek) VALUES('Wiking3','wiking','1000-01-04','30');
+INSERT INTO postac(nazwa,rodzaj,data_ur,wiek) VALUES('Wiking4','wiking','1000-01-05','30');
+INSERT INTO postac(nazwa,rodzaj,data_ur,wiek) VALUES('Wiking5','wiking','1000-01-06','30');
+
+CREATE TABLE statek(nazwa_statku VARCHAR(40), PRIMARY KEY(nazwa_statku), rodzaj_statku ENUM('a','b','c'), data_wodowania DATE, max_ladownosc INT UNSIGNED);
+INSERT INTO statek(nazwa_statku,rodzaj_statku,data_wodowania,max_ladownosc) VALUES('Statek1','a','1010-01-01','1000');
+INSERT INTO statek(nazwa_statku,rodzaj_statku,data_wodowania,max_ladownosc) VALUES('Statek2','c','1020-01-01','800');
+
+ALTER TABLE postac ADD ktory_statek INT;
+ALTER TABLE postac ADD FOREIGN KEY(ktory_statek) REFERENCES statek(nazwa_statku) ON DELETE NULL;
+ALTER TABLE postac MODIFY ktory_statek VARCHAR(40);
+
+UPDATE postac SET ktory_statek = 'Statek1' Where id = 1;
+UPDATE postac SET ktory_statek = 'Statek1' Where id = 2;
+UPDATE postac SET ktory_statek = 'Statek1' Where id = 4;
+UPDATE postac SET ktory_statek = 'Statek1' Where id = 5;
+UPDATE postac SET ktory_statek = 'Statek1' Where id = 6;
+UPDATE postac SET ktory_statek = 'Statek2' Where id = 7;
+UPDATE postac SET ktory_statek = 'Statek2' Where id = 8;
+
+
+
+
