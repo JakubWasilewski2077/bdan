@@ -1,0 +1,12 @@
+ZAD.3
+ALTER TABLE postac ADD CHECK (wiek<=1000);
+
+ZAD.4
+INSERT INTO postac(id,nazwa,rodzaj,data_ur,wiek,funkcja,ktory_statek,pesel) VALUES('10','Waz_Loko',NULL,'0100-01-01','100',NULL,NULL,'00000000000');
+CREATE TABLE marynarz AS SELECT * FROM postac WHERE ktory_statek IS NOT NULL;
+ALTER TABLE marynarz ADD PRIMARY KEY(pesel);
+
+ZAD.5
+UPDATE postac SET ktory_statek=NULL;
+DELETE FROM statek;
+DROP TABLE statek;
