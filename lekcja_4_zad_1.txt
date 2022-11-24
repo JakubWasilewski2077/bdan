@@ -1,0 +1,6 @@
+ZAD.1
+SELECT AVG(waga) AS srednia_waga_wikingow  FROM kreatura WHERE rodzaj = 'wiking';
+SELECT AVG(waga) AS srednia_wag_kreatur, COUNT(nazwa) AS liczba_kreatur FROM kreatura GROUP BY rodzaj;
+SELECT AVG(YEAR(CURDATE()) - YEAR(dataUr)) AS wiek, rodzaj FROM kreatura GROUP BY rodzaj;
+ZAD.2
+SELECT SUM(waga), rodzaj FROM zasob GROUP BY rodzaj;
