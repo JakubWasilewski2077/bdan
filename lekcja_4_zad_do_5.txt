@@ -1,0 +1,10 @@
+cw.3
+SELECT kreatura.nazwa FROM kreatura LEFT JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury WHERE ekwipunek.ilosc IS NULL
+
+cw.4
+SELECT kreatura.nazwa, zasob.nazwa FROM kreatura JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu WHERE kreatura.rodzaj = 'wiking' AND kreatura.dataUr BETWEEN '1670-01-01' AND '1679-12-31';
+SELECT kreatura.nazwa, zasob.nazwa FROM kreatura JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu WHERE zasob.rodzaj = 'jedzenie' ORDER BY kreatura.dataUR DESC LIMIT 5;
+SELECT group_concat(nazwa separator '-') FROM kreatura WHERE idKreatury !='5';
+
+cw.5
+SELECT kreatura.nazwa, kreatura.rodzaj, AVG(zasob.waga), zasob.ilosc FROM kreatura JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu WHERE kreatura.rodzaj != 'malpa' AND kreatura.rodzaj != 'waz' AND zasob.ilosc > 30 GROUP BY kreatura.rodzaj;
