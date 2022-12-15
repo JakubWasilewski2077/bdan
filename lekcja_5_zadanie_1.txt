@@ -1,0 +1,11 @@
+Zad.1
+SELECT kreatura.nazwa, uczestnicy.id_wyprawy FROM kreatura JOIN uczestnicy ON kreatura.idKreatury = uczestnicy.id_uczestnika WHERE uczestnicy.id_wyprawy IS NULL;
+
+SELECT wyprawa.nazwa, SUM(ekwipunek.ilosc) from ekwipunek JOIN kreatura ON ekwipunek.idKreatury = kreatura.idKreatury JOIN uczestnicy ON kreatura.idKreatury = uczestnicy.id_uczestnika JOIN wyprawa ON uczestnicy.id_wyprawy = wyprawa.id_wyprawy GROUP BY wyprawa.nazwa;
+
+
+Zad.2
+SELECT CONCAT(wyprawa.nazwa, "-", GROUP_CONCAT(kreatura.nazwa), "-",  COUNT(uczestnicy.id_uczestnika))AS'liczba
+_uczestnikow' FROM uczestnicy JOIN wyprawa ON uczestnicy.id_wyprawy = wyprawa.id_wyprawy JOIN kreatura ON kreatura.idKreatury = uczestnicy.id_uczestnika GROUP BY wyprawa.nazwa;
+
+SELECT wyprawa.nazwa, etapy_wyprawy.idWyprawy, GROUP_CONCAT(etapy_wyprawy.idEtapu) FROM etapy_wyprawy JOIN wyprawa ON wyprawa.id_wyprawy = etapy_wyprawy.idWyprawy GROUP BY wyprawa.nazwa;
